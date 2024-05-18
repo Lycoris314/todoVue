@@ -98,7 +98,7 @@ const changeCheck = (id) => {
 }
 
 .todo_input {
-    width: 50%;
+    width: 70%;
     margin-right: 8px;
     padding: 10px;
     font-size: 18px;
@@ -111,7 +111,7 @@ const changeCheck = (id) => {
     margin: 3px;
     padding: 8px;
     cursor: pointer;
-    background-color: #03a9f4;
+    background-color: #048fcf;
     border-radius: 6px;
     color: #fff;
     text-align: center;
@@ -128,11 +128,11 @@ const changeCheck = (id) => {
     background-color: antiquewhite;
     padding: 5px;
     margin: 20px;
-    width: 60%;
+    width: 70%;
 }
 
 .green {
-    background-color: rgb(118, 187, 14);
+    background-color: rgb(93, 149, 9);
 }
 
 .pink {
