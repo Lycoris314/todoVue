@@ -124,7 +124,6 @@ const changeCheck = (id) => {
 }
 
 .todo {
-    /*border: 1px solid silver;*/
     background-color: antiquewhite;
     padding: 5px;
     margin: 20px;
