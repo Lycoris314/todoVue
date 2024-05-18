@@ -98,7 +98,7 @@ const changeCheck = (id) => {
 }
 
 .todo_input {
-    width: 70%;
+    width: 75%;
     margin-right: 8px;
     padding: 10px;
     font-size: 18px;

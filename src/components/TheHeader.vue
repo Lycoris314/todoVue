@@ -8,8 +8,8 @@
     background-color: #f2b888;
     text-align: center;
     color: black;
-    font-size: 32px;
+    font-size: 28px;
     font-weight: bold;
-    padding: 8px 0;
+    padding: 4px 0;
 }
 </style>
