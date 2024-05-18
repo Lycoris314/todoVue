@@ -1,20 +1,17 @@
-import { ref } from 'vue';
+import { ref } from "vue";
 
 // 外部から使えるようにexportする
 export const useTodoList = () => {
-
     //todoListRefを定義
     const ls = localStorage.todoList;
     const todoListRef = ref([]);
     todoListRef.value = ls ? JSON.parse(ls) : [];
 
-    
     const add = (task) => {
         const id = new Date().getTime();
-        todoListRef.value.push({ id: id, task: task, checked: false });
+        todoListRef.value.unshift({ id: id, task: task, checked: false });
         localStorage.todoList = JSON.stringify(todoListRef.value);
-    }
-
+    };
 
     const findById = (id) => {
         return todoListRef.value.find((todo) => todo.id === id);
@@ -24,12 +21,12 @@ export const useTodoList = () => {
         return todoListRef.value.findIndex((todo) => todo.id === id);
     };
 
-    const editId = ref(-1);  //showとeditを結ぶ
+    const editId = ref(-1); //showとeditを結ぶ
 
     const show = (id) => {
         const todo = findById(id);
         editId.value = id;
-        return todo.task;  //画面処理させるために返します
+        return todo.task; //画面処理させるために返します
     };
 
     const edit = (task) => {
@@ -45,10 +42,10 @@ export const useTodoList = () => {
 
     const del = (id) => {
         const todo = findById(id);
-        const delMsg = '「' + todo.task + '」を削除しますか？';
+        const delMsg = "「" + todo.task + "」を削除しますか？";
 
         if (!confirm(delMsg)) return;
-        
+
         const idx = findIndexById(id);
         todoListRef.value.splice(idx, 1);
 
@@ -65,6 +62,5 @@ export const useTodoList = () => {
         localStorage.todoList = JSON.stringify(todoListRef.value);
     };
 
-
-    return { todoListRef ,add ,show ,edit ,del ,check }
+    return { todoListRef, add, show, edit, del, check };
 };

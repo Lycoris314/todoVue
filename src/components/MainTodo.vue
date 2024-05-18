@@ -1,4 +1,4 @@
-<script setup> //setupを忘れない
+<script setup>//setupを忘れない
 
 import { ref } from "vue"; //使う関数(refなど)をimportする。
 
@@ -6,9 +6,9 @@ import { useTodoList } from "../composables/useTodoList.js";
 
 const todoRef = ref(""); //TODO追加欄とバインド
 
-const isEditRef =ref(false); //変更ボタンの表示のオンオフ
+const isEditRef = ref(false); //変更ボタンの表示のオンオフ
 
-const {todoListRef, add, show, edit, del, check} =useTodoList();
+const { todoListRef, add, show, edit, del, check } = useTodoList();
 
 //追加ボタンをクリック
 const addTodo = () => {
@@ -19,30 +19,30 @@ const addTodo = () => {
 }
 
 //編集ボタンをクリック
-const showTodo = (id)=>{
+const showTodo = (id) => {
 
-    isEditRef.value=true;
+    isEditRef.value = true;
 
-    todoRef.value= show(id);
+    todoRef.value = show(id);
 }
 
 //変更ボタンをクリック
-const editTodo =()=>{
+const editTodo = () => {
 
     edit(todoRef.value);
 
     isEditRef.value = false;
-    
-    todoRef.value ="";
+
+    todoRef.value = "";
 }
 
 //削除ボタン
-const deleteTodo =(id)=>{
+const deleteTodo = (id) => {
     del(id);
 }
 
 //チェックボックスのオンオフ
-const changeCheck = (id) =>{
+const changeCheck = (id) => {
     check(id);
 }
 
@@ -51,30 +51,19 @@ const changeCheck = (id) =>{
 <template>
     <div class="box_input">
 
-        <input class="todo_input" 
-               placeholder="＋ TODOを入力" 
-               v-model="todoRef" />
-        
-        <button class="btn green" 
-                @click="editTodo" 
-                v-if="isEditRef">変更</button>
+        <input class="todo_input" placeholder="＋ TODOを入力" v-model="todoRef" />
 
-        <button class="btn" 
-                @click="addTodo" 
-                v-else>追加</button> 
+        <button class="btn green" @click="editTodo" v-if="isEditRef">変更</button>
+
+        <button class="btn" @click="addTodo" v-else>追加</button>
         <!-- v-if/v-elseの連動の仕方が分からない。 -->
     </div>
 
     <div class="box_list">
-        <div class="todo_list" 
-             v-for="todo in todoListRef" 
-             :key="todo.id">
+        <div class="todo_list" v-for="todo in todoListRef" :key="todo.id">
 
             <div class="todo" :class="{ fin: todo.checked }">
-                <input type="checkbox" 
-                       class="check" 
-                       @change="changeCheck(todo.id)" 
-                       :checked="todo.checked"/>
+                <input type="checkbox" class="check" @change="changeCheck(todo.id)" :checked="todo.checked" />
 
                 <label>{{ todo.task }}</label>
             </div>
@@ -90,29 +79,28 @@ const changeCheck = (id) =>{
 </template>
 
 <style scoped>
-
 .box_input {
-    margin-top: 20px;
+    margin: 20px 0;
     text-align: center;
 }
 
-.todo_list{
+.todo_list {
     display: flex;
     justify-content: center;
 }
 
 .todo_input {
-    width: 300px;
+    width: 50%;
     margin-right: 8px;
-    padding: 8px;
+    padding: 10px;
     font-size: 18px;
     border: 1px solid #aaa;
     border-radius: 6px;
 }
 
 .btn {
-    border:none;
-    margin:3px;
+    border: none;
+    margin: 3px;
     padding: 8px;
     cursor: pointer;
     background-color: #03a9f4;
@@ -122,22 +110,30 @@ const changeCheck = (id) =>{
     font-size: 14px;
 }
 
+.btns {
+    display: flex;
+    margin: 10px 0;
+}
+
 .todo {
-    border: 1px solid silver;
+    /*border: 1px solid silver;*/
+    background-color: antiquewhite;
+    padding: 5px;
     margin: 20px;
     width: 60%;
 }
 
-.green{
-    background-color: rgb(141, 219, 25);
-}
-.pink{
-    background-color: pink;
+.green {
+    background-color: rgb(118, 187, 14);
 }
 
-.fin{
+.pink {
+    background-color: rgb(244, 111, 134);
+}
+
+.fin {
     text-decoration: line-through;
-    background-color: #03a9f4;
-    color:brown
+    background-color: #c9c9c9;
+    color: brown
 }
 </style>
