@@ -53,10 +53,10 @@ const changeCheck = (id) => {
 
         <input class="todo_input" placeholder="＋ TODOを入力" v-model="todoRef" />
 
-        <button class="btn green" @click="editTodo" v-if="isEditRef">変更</button>
-
-        <button class="btn" @click="addTodo" v-else>追加</button>
-        <!-- v-if/v-elseの連動の仕方が分からない。 -->
+        <div class="addChange">
+            <button class="btn green" @click="editTodo" v-if="isEditRef">変更</button>
+            <button class="btn" @click="addTodo" v-else>追加</button>
+        </div>
     </div>
 
     <div class="box_list">
@@ -84,9 +84,17 @@ const changeCheck = (id) => {
     text-align: center;
 }
 
+.addChange {
+    margin: 10px;
+}
+
 .todo_list {
     display: flex;
     justify-content: center;
+}
+
+.check {
+    margin: 5px;
 }
 
 .todo_input {
