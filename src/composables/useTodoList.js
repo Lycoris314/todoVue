@@ -26,7 +26,7 @@ export const useTodoList = () => {
     const show = (id) => {
         const todo = findById(id);
         editId.value = id;
-        return todo.task; //画面処理させるために返します
+        return todo.task; //画面処理させるために返す
     };
 
     const edit = (task) => {
@@ -62,5 +62,12 @@ export const useTodoList = () => {
         localStorage.todoList = JSON.stringify(todoListRef.value);
     };
 
-    return { todoListRef, add, show, edit, del, check };
+    const allDel = () => {
+        const delMsg = "本当にすべて削除しますか？";
+        if (!confirm(delMsg)) return;
+        todoListRef.value = [];
+        localStorage.todoList = JSON.stringify(todoListRef.value);
+    };
+
+    return { todoListRef, add, show, edit, del, check, allDel };
 };

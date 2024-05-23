@@ -8,7 +8,7 @@ const todoRef = ref(""); //TODO追加欄とバインド
 
 const isEditRef = ref(false); //変更ボタンの表示のオンオフ
 
-const { todoListRef, add, show, edit, del, check } = useTodoList();
+const { todoListRef, add, show, edit, del, check, allDel } = useTodoList();
 
 //追加ボタンをクリック
 const addTodo = () => {
@@ -20,6 +20,8 @@ const addTodo = () => {
 
 //編集ボタンをクリック
 const showTodo = (id) => {
+
+    document.querySelector("html").scrollTop = 0;
 
     isEditRef.value = true;
 
@@ -45,6 +47,7 @@ const deleteTodo = (id) => {
 const changeCheck = (id) => {
     check(id);
 }
+
 
 </script>
 
@@ -75,6 +78,7 @@ const changeCheck = (id) => {
             </div>
         </div>
     </div>
+    <button class="btn pink allDel" @click="allDel()">すべて削除</button>
 
 </template>
 
@@ -121,6 +125,12 @@ const changeCheck = (id) => {
 .btns {
     display: flex;
     margin: 10px 0;
+}
+
+.allDel {
+    display: block;
+    width: 100px;
+    margin: 30px auto;
 }
 
 .todo {
