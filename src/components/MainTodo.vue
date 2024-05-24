@@ -78,7 +78,7 @@ const changeCheck = (id) => {
             </div>
         </div>
     </div>
-    <button class="btn pink allDel" @click="allDel()">すべて削除</button>
+    <button class="btn pink allDel" @click="allDel()">済を全削除</button>
 
 </template>
 

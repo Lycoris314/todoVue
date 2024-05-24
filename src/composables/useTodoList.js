@@ -8,7 +8,7 @@ export const useTodoList = () => {
     todoListRef.value = ls ? JSON.parse(ls) : [];
 
     const add = (task) => {
-        const id = new Date().getTime();
+        const id = new Date().getTime(); //現在時刻をidとする。
         todoListRef.value.unshift({ id: id, task: task, checked: false });
         localStorage.todoList = JSON.stringify(todoListRef.value);
     };
@@ -34,7 +34,7 @@ export const useTodoList = () => {
         const idx = findIndexById(editId.value);
 
         todo.task = task;
-        todoListRef.value.splice(idx, 1, todo);
+        todoListRef.value.splice(idx, 1, todo); //置換
 
         localStorage.todoList = JSON.stringify(todoListRef.value);
         editId.value = -1;
@@ -63,9 +63,11 @@ export const useTodoList = () => {
     };
 
     const allDel = () => {
-        const delMsg = "本当にすべて削除しますか？";
+        const delMsg = "本当に済をすべて削除しますか？";
         if (!confirm(delMsg)) return;
-        todoListRef.value = [];
+        todoListRef.value = todoListRef.value.filter(
+            (todo) => todo.checked === false
+        );
         localStorage.todoList = JSON.stringify(todoListRef.value);
     };
 
